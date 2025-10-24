@@ -64,7 +64,19 @@ yarn hardhat:test
 
 ## Project Structure
 
-- `packages/hardhat/contracts/AaveVault.sol` - Main vault contract
+- `packages/hardhat/contracts/AaveVault.sol` - Main vault contract (checkout resrouces to understand Aave architecture and contracts)
 - `packages/hardhat/deploy/01_deploy_aave_vault.ts` - Deployment script
 - `packages/hardhat/test/AaveVault.ts` - Tests
 - `packages/nextjs/app/page.tsx` - Frontend UI
+
+## Resrouces: 
+<details>
+
+<summary>
+    Aave architecture: 
+</summary>
+
+<img width="2686" height="1412" alt="image" src="https://github.com/user-attachments/assets/3236574c-d87e-47c3-957d-e2a940276be4" />
+
+
+</details>
