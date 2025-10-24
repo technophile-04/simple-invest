@@ -18,10 +18,12 @@
     "hardhat-verify": "hardhat verify",
     "lint": "eslint",
     "lint-staged": "eslint",
-    "test": "REPORT_GAS=true hardhat test --network hardhat",
+    "test": "MAINNET_FORKING_ENABLED=true REPORT_GAS=true hardhat test --network hardhat",
     "verify": "hardhat etherscan-verify"
   },
   "dependencies": {
+    "@aave/core-v3": "^1.19.3",
+    "@bgd-labs/aave-address-book": "^3.3.2",
     "@inquirer/password": "^4.0.2",
     "@openzeppelin/contracts": "~5.0.2",
     "@typechain/ethers-v6": "~0.5.1",

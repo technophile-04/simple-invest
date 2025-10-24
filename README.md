@@ -1,80 +1,70 @@
-# 🏗 Scaffold-ETH 2
+# 🏗 Simple Invest
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+## Overview
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+A simple yet powerful vault that accepts ETH deposits and automatically supplies them to **Aave V3** on Optimism to earn yield. Users can withdraw their deposits plus earned interest at any time.
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+### Key Features
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
-
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
-
-## Requirements
-
-Before you begin, you need to install the following tools:
-
-- [Node (>= v20.18.3)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+- ✅ Deposit ETH into the vault
+- ✅ Anyone can trigger supply to Aave V3
+- ✅ Automatic yield generation from Aave
+- ✅ Withdraw with proportional interest
 
 ## Quickstart
 
-To get started with Scaffold-ETH 2, follow the steps below:
+### 1. Install Packages
 
-1. Install dependencies if it was skipped in CLI:
-
-```
-cd my-dapp-example
+```bash
 yarn install
 ```
 
-2. Run a local network in the first terminal:
+### 2. Start Local Chain (Optimism Fork)
 
+> Make sure to set the Alchemy API key `ALCHEMY_API_KEY` in `.env` inside `packages/hardhat`
+
+```bash
+MAINNET_FORKING_ENABLED=true yarn chain
 ```
-yarn chain
-```
 
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/hardhat/hardhat.config.ts`.
+This starts a local Hardhat node that forks Optimism mainnet, giving you access to the real Aave V3 deployment.
 
-3. On a second terminal, deploy the test contract:
+### 3. Deploy Contract
 
-```
+In a new terminal:
+
+```bash
 yarn deploy
 ```
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
+This deploys the AaveVault contract with the correct Aave addresses from the official Address Book.
 
-4. On a third terminal, start your NextJS app:
+### 4. Start Frontend
 
-```
+In another terminal:
+
+```bash
 yarn start
 ```
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+Visit your app on: `http://localhost:3000` to interact with the Aave Vault!
 
-Run smart contract test with `yarn hardhat:test`
+## How It Works
 
-- Edit your smart contracts in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
+1. **Deposit**: Users deposit ETH into the vault
+2. **Supply**: Anyone can trigger the vault to supply ETH to Aave (wraps to WETH automatically)
+3. **Earn**: The vault receives aWETH tokens that automatically accrue interest
+4. **Withdraw**: Users can withdraw their proportional share including earned interest
 
+## Testing
 
-## Documentation
+```bash
+yarn hardhat:test
+```
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
+## Project Structure
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+- `packages/hardhat/contracts/AaveVault.sol` - Main vault contract
+- `packages/hardhat/deploy/01_deploy_aave_vault.ts` - Deployment script
+- `packages/hardhat/test/AaveVault.ts` - Tests
+- `packages/nextjs/app/page.tsx` - Frontend UI

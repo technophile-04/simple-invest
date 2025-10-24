@@ -5,6 +5,13 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@aave/core-v3@npm:^1.19.3":
+  version: 1.19.3
+  resolution: "@aave/core-v3@npm:1.19.3"
+  checksum: 64fe159280b9777a0913c0d8612c03c6e17bced1304975e72a9bb99a9af400159ae10f2038d4e182d6237e20cbe8d16aba5bb9dacbc9d93d38e032a5260e5dbb
+  languageName: node
+  linkType: hard
+
 "@adraffy/ens-normalize@npm:1.10.1":
   version: 1.10.1
   resolution: "@adraffy/ens-normalize@npm:1.10.1"
@@ -192,6 +199,13 @@ __metadata:
     viem: ^2.31.7
     zustand: 5.0.3
   checksum: f2eae7b3e9ab88c181e0902f952611812fd3f2d9fe092e9082d5c6fcee1e77445eb8090b01d7104963263c44a2f320536d45521a5a935febde1405a01cb6c496
+  languageName: node
+  linkType: hard
+
+"@bgd-labs/aave-address-book@npm:^3.3.2":
+  version: 3.7.0
+  resolution: "@bgd-labs/aave-address-book@npm:3.7.0"
+  checksum: 3882744acebfa14fe1518fdb991c76c17336ccc5440299f3d3ecff8338349a9c74faab66cd183edcb57207f5cc78c40c2551cbf881fc99e5d31875a636b7fcd3
   languageName: node
   linkType: hard
 
@@ -3505,6 +3519,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@se-2/hardhat@workspace:packages/hardhat"
   dependencies:
+    "@aave/core-v3": ^1.19.3
+    "@bgd-labs/aave-address-book": ^3.3.2
     "@ethersproject/abi": ~5.7.0
     "@ethersproject/providers": ~5.7.2
     "@inquirer/password": ^4.0.2
